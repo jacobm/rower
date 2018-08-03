@@ -1,0 +1,12 @@
+{
+    "defaultEnv": "local",
+    "local": {
+        "host": "localhost",
+        "user": "root",
+        "password": "dingo",
+        "database": "rower",
+        "port": 6601,
+        "driver": "mysql",
+        "multipleStatements": true
+    }
+}

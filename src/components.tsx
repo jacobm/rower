@@ -1,6 +1,6 @@
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import * as d3 from 'd3';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import * as d3 from "d3";
 
 class App extends React.Component<{ greeting: string }, { count: number }> {
     state = { count: 0 };
@@ -8,17 +8,20 @@ class App extends React.Component<{ greeting: string }, { count: number }> {
         return (
             <div>
                 <h2>{this.props.greeting}</h2>
-                <button onClick={() => this.setState(
-                    { count: this.state.count + 1 })}>
+                <button
+                    onClick={() =>
+                        this.setState({ count: this.state.count + 1 })
+                    }>
                     This button has been clicked {this.state.count} times.
-              </button>
-            </div>);
+                </button>
+            </div>
+        );
     }
 }
 
 interface Props {
-    width: number,
-    height: number
+    width: number;
+    height: number;
 }
 
 class D3App extends React.Component<Props, {}> {
@@ -35,9 +38,12 @@ class D3App extends React.Component<Props, {}> {
 
     render() {
         return (
-            <svg className="container" ref={(ref: SVGSVGElement) => this.ref = ref}
-                width={this.props.width} height={this.props.height}>
-            </svg>
+            <svg
+                className="container"
+                ref={(ref: SVGSVGElement) => (this.ref = ref)}
+                width={this.props.width}
+                height={this.props.height}
+            />
         );
     }
 }
@@ -47,14 +53,11 @@ class Home extends React.Component {
         return (
             <div>
                 <div data-tid="container">
-                    <h2>Home rower dingo  </h2>
+                    <h2>Home rower dingo </h2>
                 </div>
             </div>
         );
     }
 }
 
-export {
-    Home, D3App, App
-}
-
+export { Home, D3App, App };

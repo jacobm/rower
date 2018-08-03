@@ -1,33 +1,33 @@
 {
-  "name": "rower",
-  "description": "An application for the Viking AR3 rower",
-  "author": "Jacob Mortensen",
-  "license": "The unlicense",
-  "repository": "https://github.com/jacobm/rower",
-  "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
-    "lint": "tslint -c tslint.json -p tsconfig.json",
-    "start": "npm run build && electron ./dist/main.js"
-  },
-  "keywords": [
-    "Electron",
-    "typescript",
-    "rowing",
-    "training"
-  ],
-  "devDependencies": {
-    "@types/d3": "^5.0.0",
-    "@types/react": "^16.4.7",
-    "@types/react-dom": "^16.0.6",
-    "electron": "^2.0.5",
-    "tslint": "^5.10.0",
-    "typescript": "^3.0.1"
-  },
-  "dependencies": {
-    "d3": "^5.5.0",
-    "react": "^16.4.1",
-    "react-countdown-clock": "^2.4.0",
-    "react-dom": "^16.4.1"
-  }
+    "name": "rower",
+    "description": "An application for the Viking AR3 rower",
+    "author": "Jacob Mortensen",
+    "license": "The unlicense",
+    "repository": "https://github.com/jacobm/rower",
+    "scripts": {
+        "build": "tsc",
+        "watch": "tsc -w",
+        "lint": "tslint -c tslint.json -p tsconfig.json",
+        "start": "npm run build && electron ./dist/main.js"
+    },
+    "keywords": [
+        "Electron",
+        "typescript",
+        "rowing",
+        "training"
+    ],
+    "devDependencies": {
+        "@types/d3": "^5.0.0",
+        "@types/react": "^16.4.7",
+        "@types/react-dom": "^16.0.6",
+        "electron": "^2.0.5",
+        "tslint": "^5.10.0",
+        "typescript": "^3.0.1"
+    },
+    "dependencies": {
+        "d3": "^5.5.0",
+        "react": "^16.4.1",
+        "react-countdown-clock": "^2.4.0",
+        "react-dom": "^16.4.1"
+    }
 }

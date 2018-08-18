@@ -1,0 +1,37 @@
+.mainPanel {
+    display: flex;
+    flex-direction: row;
+}
+
+.statusPanel {
+    display: flex;
+    flex-direction: column;
+    border: 3px;
+    border-style: dashed;
+    border-color: black;
+}
+
+.statusRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.statusWidget {
+    display: flex;
+    border: 1px;
+    border-style: double;
+    flex-direction: column;
+    color: darkorange;
+    margin-left: 20px;
+    padding: 10px 10px 10px 10px;
+    font-size: 18px;
+}
+
+.status {
+    float: left;
+}
+
+.rowValue {
+    font-size: 24px;
+}

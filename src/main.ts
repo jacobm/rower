@@ -1,14 +1,20 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 import * as path from "path";
-import * as mysql from "mysql";
+import { connect, RowerEvent } from "./receiver";
 
 let mainWindow: Electron.BrowserWindow | null;
 
-function createWindow() {
+interface AppConfig {
+    mockSerial: boolean;
+}
+
+let config: AppConfig = require("../config.json");
+
+async function createWindow() {
     // Create the browser window.
     mainWindow = new BrowserWindow({
         height: 600,
-        width: 800
+        width: 600
     });
 
     // and load the index.html of the app.
@@ -16,18 +22,29 @@ function createWindow() {
 
     // Open the DevTools.
     mainWindow.webContents.openDevTools();
+    console.log(config);
 
-    // Emitted when the window is closed.
+    let eventHandler = function(event: RowerEvent) {
+        console.log(event);
+        if (mainWindow) mainWindow.webContents.send("rowingEvent", event);
+    };
+
+    ipcMain.on("connect-to-rower", async (event: any) => {
+        if (mainWindow) {
+            console.log("checking connection");
+            let connectionStatus = await connect(
+                config.mockSerial,
+                eventHandler
+            );
+            mainWindow.webContents.send("connectionStatus", connectionStatus);
+        }
+    });
+    // Emitted when the window is closed
     mainWindow.on("closed", () => {
         // Dereference the window object, usually you would store windows
         // in an array if your app supports multi windows, this is the time
         // when you should delete the corresponding element.
         mainWindow = null;
-    });
-
-    ipcMain.on("dingo", (event: any, arg: any) => {
-        console.log(event, arg);
-        event.sender.send("reply", 1);
     });
 }
 

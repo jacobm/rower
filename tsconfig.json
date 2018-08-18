@@ -1,15 +1,19 @@
 {
     "compilerOptions": {
+        "target": "esnext",
         "module": "commonjs",
         "noImplicitAny": true,
         "sourceMap": true,
         "outDir": "dist",
         "baseUrl": ".",
-        "strict": false,
+        "strict": true,
         "jsx": "react",
         "paths": {
             "*": ["node_modules/*"]
-        }
+        },
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true
     },
     "include": ["src/**/*", "./typings/**/*"]
 }

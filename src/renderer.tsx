@@ -1,29 +1,34 @@
-import * as V from "./components";
 import * as ReactDOM from "react-dom";
 import * as React from "react";
 import * as C from "./components";
+import { RowerEvent } from "./receiver";
+
 import { ipcRenderer } from "electron";
-import ReactCountdownClock = require("react-countdown-clock");
+import { ConnectionStatus } from "./receiver";
 
-ReactDOM.render(
-    <div>
-        <C.Home />
-        <ReactCountdownClock
-            seconds={90}
-            color="#000"
-            alpha={0.9}
-            size={200}
-            onComplete={() => console.log("done")}
-        />
-        <C.App greeting="Dingo hest fisk" />
-        <C.D3App width={100} height={300} />
-    </div>,
-    document.getElementById("app")
+var events: RowerEvent[] = [];
+type Store = {
+    rowerEvents: RowerEvent[];
+};
+
+var store: Store = {
+    rowerEvents: []
+};
+updateDom(store);
+ipcRenderer.send("connect-to-rower");
+ipcRenderer.once(
+    "connectionStatus",
+    (sender: any, payload: ConnectionStatus) => {
+        ipcRenderer.on("rowingEvent", (e: any, msg: RowerEvent) => {
+            store.rowerEvents.push(msg);
+            updateDom(store);
+        });
+    }
 );
-
-ipcRenderer.send("dingo", "hest");
-ipcRenderer.on("reply", (event: any, args: any) => {
-    console.log(args);
-});
-const result = [1, 2, 3].map(x => x + 1);
-console.log(result);
+function updateDom(store: Store) {
+    store = Object.assign({}, store, {});
+    ReactDOM.render(
+        <C.App rowerEvents={store.rowerEvents} />,
+        document.getElementById("app")
+    );
+}
